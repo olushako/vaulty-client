@@ -16,7 +16,7 @@ if ! ruff format --check .; then
     exit 1
 fi
 
-echo "🔬 Running mypy (matching CI)..."
+echo "🔬 Running mypy (non-blocking, matching CI)..."
 mypy vaulty --ignore-missing-imports || echo "⚠️  Mypy found type errors (non-blocking)"
 
 echo "🧪 Running tests..."
