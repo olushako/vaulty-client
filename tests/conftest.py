@@ -1,11 +1,12 @@
 """Shared test fixtures."""
 
-import pytest
 from unittest.mock import AsyncMock, MagicMock
-from typing import Optional
+
 import httpx
-from vaulty.http import HTTPClient
+import pytest
+
 from vaulty.auth import AuthHandler
+from vaulty.http import HTTPClient
 
 
 @pytest.fixture
@@ -16,7 +17,7 @@ def mock_httpx_response():
         response.status_code = status_code
         response.is_success = 200 <= status_code < 300
         response.headers = headers or {}
-        
+
         if json_data:
             response.json = MagicMock(return_value=json_data)
             response.text = ""
@@ -26,7 +27,7 @@ def mock_httpx_response():
         else:
             response.json = MagicMock(return_value={})
             response.text = ""
-        
+
         return response
     return _create
 
