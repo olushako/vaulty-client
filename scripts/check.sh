@@ -4,13 +4,19 @@
 
 set -e
 
-echo "🔍 Running ruff checks and auto-fixing..."
-ruff check . --fix
+echo "🔍 Running ruff check (matching CI - no auto-fix)..."
+if ! ruff check .; then
+    echo "❌ Ruff check failed! Fix errors manually or run: ruff check . --fix"
+    exit 1
+fi
 
-echo "📝 Running ruff format..."
-ruff format .
+echo "📝 Running ruff format check (matching CI)..."
+if ! ruff format --check .; then
+    echo "❌ Ruff format check failed! Fix formatting with: ruff format ."
+    exit 1
+fi
 
-echo "🔬 Running mypy (non-blocking)..."
+echo "🔬 Running mypy (matching CI)..."
 mypy vaulty --ignore-missing-imports || echo "⚠️  Mypy found type errors (non-blocking)"
 
 echo "🧪 Running tests..."
