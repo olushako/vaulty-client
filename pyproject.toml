@@ -1,5 +1,5 @@
 [project]
-name = "vaulty"
+name = "vaulty-client"
 version = "0.1.0"
 description = "Vaulty Python SDK and CLI"
 readme = "README.md"
