@@ -36,20 +36,20 @@ async def main():
         base_url="https://api.vaulty.com",
         api_token="vaulty_abc123..."
     )
-    
+
     # Create project
     project = await client.projects.create(
         name="my-project",
         description="My awesome project"
     )
-    
+
     # Create secret
     secret = await client.secrets.create(
         project_name="my-project",
         key="API_KEY",
         value="secret_value_123"
     )
-    
+
     # Get secret value
     value = await client.secrets.get_value(
         project_name="my-project",
@@ -248,6 +248,25 @@ vaulty get_secret HelloToken  # Uses http://localhost:3001
 ```
 
 ## Development
+
+### Local Checks (Before Committing)
+
+**IMPORTANT**: Always run these checks locally before pushing to catch errors early!
+
+```bash
+# Option 1: Run all CI checks at once
+./scripts/check.sh
+
+# Option 2: Run checks individually
+ruff check .                    # Linting
+ruff format --check .           # Format check
+mypy vaulty --ignore-missing-imports  # Type checking
+pytest tests/ -v --cov=vaulty --cov-report=term-missing  # Tests
+
+# Option 3: Use pre-commit hooks (runs automatically on commit)
+pre-commit install              # Install hooks (one-time setup)
+# Now every commit will run checks automatically
+```
 
 ### Running Tests
 
