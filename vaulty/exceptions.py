@@ -8,7 +8,7 @@ class VaultyError(Exception):
 class VaultyAPIError(VaultyError):
     """API returned an error response."""
 
-    def __init__(self, message: str, status_code: int, detail: str = None):
+    def __init__(self, message: str, status_code: int, detail: str | None = None):
         self.status_code = status_code
         self.detail = detail
         super().__init__(message)
@@ -33,6 +33,12 @@ class VaultyValidationError(VaultyAPIError):
 class VaultyRateLimitError(VaultyAPIError):
     """Rate limit exceeded."""
 
-    def __init__(self, message: str, status_code: int, detail: str = None, retry_after: int = None):
+    def __init__(
+        self,
+        message: str,
+        status_code: int,
+        detail: str | None = None,
+        retry_after: int | None = None,
+    ):
         self.retry_after = retry_after
         super().__init__(message, status_code, detail)

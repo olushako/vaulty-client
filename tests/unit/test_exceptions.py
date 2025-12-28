@@ -1,14 +1,13 @@
 """Tests for Vaulty exceptions."""
 
-import pytest
 from vaulty.exceptions import (
-    VaultyError,
     VaultyAPIError,
     VaultyAuthenticationError,
     VaultyAuthorizationError,
+    VaultyError,
     VaultyNotFoundError,
-    VaultyValidationError,
     VaultyRateLimitError,
+    VaultyValidationError,
 )
 
 
@@ -73,4 +72,3 @@ def test_vaulty_rate_limit_error_no_retry_after():
     """Test VaultyRateLimitError without retry_after."""
     error = VaultyRateLimitError("Rate limit", 429, "Too many requests")
     assert error.retry_after is None
-

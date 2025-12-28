@@ -6,6 +6,7 @@ import click
 
 from ...cli.output import OutputFormatter
 from ...cli.utils import get_client, run_async
+from ...client import VaultyClient
 
 
 @click.group()

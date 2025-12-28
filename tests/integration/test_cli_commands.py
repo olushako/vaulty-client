@@ -9,18 +9,19 @@ try:
     import click.testing
 
     from vaulty.cli.main import cli
+
     CLI_AVAILABLE = True
 except ImportError:
     CLI_AVAILABLE = False
 
 
-@pytest.fixture
+@pytest.fixture()
 def cli_runner():
     """Create Click CLI test runner."""
     return click.testing.CliRunner()
 
 
-@pytest.fixture
+@pytest.fixture()
 def mock_client():
     """Create mock VaultyClient."""
     return MagicMock()
@@ -30,7 +31,6 @@ def mock_client():
 def test_cli_auth_login(cli_runner):
     """Test 'vaulty auth login' command."""
     with patch("vaulty.cli.config.CLIConfig") as mock_config:
-
         mock_config_instance = MagicMock()
         mock_config.return_value = mock_config_instance
 
@@ -45,10 +45,11 @@ def test_cli_auth_login(cli_runner):
 @pytest.mark.skipif(not CLI_AVAILABLE, reason="CLI dependencies not available")
 def test_cli_secrets_get(cli_runner):
     """Test 'vaulty secrets get' command."""
-    with patch("vaulty.cli.utils.get_client") as mock_get_client, \
-         patch("vaulty.cli.utils.run_async") as mock_run_async, \
-         patch("vaulty.cli.utils.get_project_from_token_scope") as mock_get_project:
-
+    with (
+        patch("vaulty.cli.utils.get_client") as mock_get_client,
+        patch("vaulty.cli.utils.run_async") as mock_run_async,
+        patch("vaulty.cli.utils.get_project_from_token_scope") as mock_get_project,
+    ):
         mock_client = MagicMock()
         mock_get_client.return_value = mock_client
 
@@ -58,11 +59,9 @@ def test_cli_secrets_get(cli_runner):
 
         mock_get_project.return_value = None
 
-        result = cli_runner.invoke(cli, [
-            "secrets", "get", "API_KEY",
-            "--project", "test-project",
-            "--token", "test-token"
-        ])
+        result = cli_runner.invoke(
+            cli, ["secrets", "get", "API_KEY", "--project", "test-project", "--token", "test-token"]
+        )
 
         # Should succeed or show error if project required
         assert result.exit_code in [0, 1, 2]
@@ -71,10 +70,11 @@ def test_cli_secrets_get(cli_runner):
 @pytest.mark.skipif(not CLI_AVAILABLE, reason="CLI dependencies not available")
 def test_cli_secrets_list(cli_runner):
     """Test 'vaulty secrets list' command."""
-    with patch("vaulty.cli.utils.get_client") as mock_get_client, \
-         patch("vaulty.cli.utils.run_async") as mock_run_async, \
-         patch("vaulty.cli.utils.get_project_from_token_scope") as mock_get_project:
-
+    with (
+        patch("vaulty.cli.utils.get_client") as mock_get_client,
+        patch("vaulty.cli.utils.run_async") as mock_run_async,
+        patch("vaulty.cli.utils.get_project_from_token_scope") as mock_get_project,
+    ):
         mock_client = MagicMock()
         mock_get_client.return_value = mock_client
 
@@ -90,11 +90,9 @@ def test_cli_secrets_list(cli_runner):
 
         mock_get_project.return_value = None
 
-        result = cli_runner.invoke(cli, [
-            "secrets", "list",
-            "--project", "test-project",
-            "--token", "test-token"
-        ])
+        result = cli_runner.invoke(
+            cli, ["secrets", "list", "--project", "test-project", "--token", "test-token"]
+        )
 
         assert result.exit_code in [0, 1, 2]
 
@@ -102,9 +100,10 @@ def test_cli_secrets_list(cli_runner):
 @pytest.mark.skipif(not CLI_AVAILABLE, reason="CLI dependencies not available")
 def test_cli_projects_list(cli_runner):
     """Test 'vaulty projects list' command."""
-    with patch("vaulty.cli.utils.get_client") as mock_get_client, \
-         patch("vaulty.cli.utils.run_async") as mock_run_async:
-
+    with (
+        patch("vaulty.cli.utils.get_client") as mock_get_client,
+        patch("vaulty.cli.utils.run_async") as mock_run_async,
+    ):
         mock_client = MagicMock()
         mock_get_client.return_value = mock_client
 
@@ -118,10 +117,7 @@ def test_cli_projects_list(cli_runner):
         mock_result.has_previous = False
         mock_run_async.return_value = mock_result
 
-        result = cli_runner.invoke(cli, [
-            "projects", "list",
-            "--token", "test-token"
-        ])
+        result = cli_runner.invoke(cli, ["projects", "list", "--token", "test-token"])
 
         assert result.exit_code in [0, 1, 2]
 
@@ -129,9 +125,10 @@ def test_cli_projects_list(cli_runner):
 @pytest.mark.skipif(not CLI_AVAILABLE, reason="CLI dependencies not available")
 def test_cli_health_check(cli_runner):
     """Test 'vaulty health' command."""
-    with patch("vaulty.cli.utils.get_client") as mock_get_client, \
-         patch("vaulty.cli.utils.run_async") as mock_run_async:
-
+    with (
+        patch("vaulty.cli.utils.get_client") as mock_get_client,
+        patch("vaulty.cli.utils.run_async") as mock_run_async,
+    ):
         mock_client = MagicMock()
         mock_get_client.return_value = mock_client
 
@@ -142,4 +139,3 @@ def test_cli_health_check(cli_runner):
         result = cli_runner.invoke(cli, ["health"])
 
         assert result.exit_code in [0, 1, 2]
-
