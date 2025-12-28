@@ -251,15 +251,23 @@ vaulty get_secret HelloToken  # Uses http://localhost:3001
 
 ### Local Checks (Before Committing)
 
-**IMPORTANT**: Always run these checks locally before pushing to catch errors early!
+**CRITICAL**: Always run these checks locally before pushing! This prevents CI failures.
 
 ```bash
-# Option 1: Run all CI checks at once
+# Run all CI checks (matches GitHub Actions exactly)
 ./scripts/check.sh
 
-# Option 2: Run checks individually
-ruff check .                    # Linting
-ruff format --check .           # Format check
+# This runs:
+# - ruff check .              (no auto-fix, matches CI)
+# - ruff format --check .      (format check, matches CI)
+# - mypy vaulty --ignore-missing-imports
+# - pytest with coverage
+
+# If checks fail, fix errors:
+ruff check . --fix            # Auto-fix ruff errors
+ruff format .                 # Auto-format code
+./scripts/check.sh            # Verify fixes
+```
 mypy vaulty --ignore-missing-imports  # Type checking
 pytest tests/ -v --cov=vaulty --cov-report=term-missing  # Tests
 
