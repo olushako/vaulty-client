@@ -35,8 +35,7 @@ def mock_httpx_response():
 @pytest.fixture
 def mock_httpx_client():
     """Create a mock httpx.AsyncClient."""
-    client = AsyncMock(spec=httpx.AsyncClient)
-    return client
+    return AsyncMock(spec=httpx.AsyncClient)
 
 
 @pytest.fixture
