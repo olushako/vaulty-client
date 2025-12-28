@@ -12,7 +12,7 @@ from vaulty.http import HTTPClient
 @pytest.fixture
 def mock_httpx_response():
     """Create a mock httpx.Response."""
-    def _create(status_code: int = 200, json_data: dict = None, text: str = None, headers: dict = None):
+    def _create(status_code: int = 200, json_data: dict | None = None, text: str | None = None, headers: dict | None = None):
         response = MagicMock(spec=httpx.Response)
         response.status_code = status_code
         response.is_success = 200 <= status_code < 300
