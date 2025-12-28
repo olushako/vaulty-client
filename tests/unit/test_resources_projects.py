@@ -28,8 +28,8 @@ async def test_project_resource_create(project_resource, http_client):
         "customer_id": "c-456",
         "name": "test-project",
         "description": "Test description",
-        "created_at": "2024-01-01T00:00:00Z",
-        "updated_at": "2024-01-01T00:00:00Z"
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2025-01-01T00:00:00Z"
     }
     
     with patch.object(http_client, 'post', return_value=mock_response):
@@ -53,8 +53,8 @@ async def test_project_resource_list(project_resource, http_client):
                 "customer_id": "c-456",
                 "name": "test-project",
                 "description": "Test",
-                "created_at": "2024-01-01T00:00:00Z",
-                "updated_at": "2024-01-01T00:00:00Z"
+                "created_at": "2025-01-01T00:00:00Z",
+                "updated_at": "2025-01-01T00:00:00Z"
             }
         ],
         "total": 1,
@@ -85,8 +85,8 @@ async def test_project_resource_get(project_resource, http_client):
         "customer_id": "c-456",
         "name": "test-project",
         "description": "Test",
-        "created_at": "2024-01-01T00:00:00Z",
-        "updated_at": "2024-01-01T00:00:00Z"
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2025-01-01T00:00:00Z"
     }
     
     with patch.object(http_client, 'get', return_value=mock_response):
@@ -108,8 +108,8 @@ async def test_project_resource_update(project_resource, http_client):
         "customer_id": "c-456",
         "name": "test-project",
         "description": "Updated description",
-        "created_at": "2024-01-01T00:00:00Z",
-        "updated_at": "2024-01-02T00:00:00Z"
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2025-01-02T00:00:00Z"
     }
     
     with patch.object(http_client, 'patch', return_value=mock_response):

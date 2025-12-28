@@ -209,8 +209,8 @@ activities_page = await client.activities.list(
     method="POST",
     resource_id="s-abc123",
     search="API_KEY",
-    start_date=datetime(2024, 1, 1),
-    end_date=datetime(2024, 12, 31)
+    start_date=datetime(2025, 1, 1),
+    end_date=datetime(2025, 12, 31)
 )
 ```
 
@@ -349,7 +349,7 @@ vaulty tokens delete t-token123
 ### Activities
 
 ```bash
-vaulty activities list [--action create_secret] [--method POST] [--resource-id s-abc123] [--search "API_KEY"] [--start-date 2024-01-01] [--end-date 2024-12-31] [--page 1] [--page-size 50]
+vaulty activities list [--action create_secret] [--method POST] [--resource-id s-abc123] [--search "API_KEY"] [--start-date 2025-01-01] [--end-date 2025-12-31] [--page 1] [--page-size 50]
 ```
 
 ### Customers
