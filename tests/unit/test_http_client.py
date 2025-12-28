@@ -15,7 +15,7 @@ from vaulty.exceptions import (
 from vaulty.http import HTTPClient
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_http_client_init_with_api_token():
     """Test HTTPClient initialization with API token."""
     client = HTTPClient(base_url="https://api.test.com", api_token="test-token")
@@ -26,7 +26,7 @@ async def test_http_client_init_with_api_token():
     await client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_http_client_init_with_jwt_token():
     """Test HTTPClient initialization with JWT token."""
     client = HTTPClient(base_url="https://api.test.com", jwt_token="jwt-token")
@@ -35,7 +35,7 @@ async def test_http_client_init_with_jwt_token():
     await client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_http_client_init_no_auth():
     """Test HTTPClient initialization without auth."""
     client = HTTPClient(base_url="https://api.test.com")
@@ -45,7 +45,7 @@ async def test_http_client_init_no_auth():
     await client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_http_client_get_client():
     """Test HTTPClient._get_client creates client with correct headers."""
     client = HTTPClient(base_url="https://api.test.com", api_token="test-token")
@@ -57,7 +57,7 @@ async def test_http_client_get_client():
     await client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_http_client_close():
     """Test HTTPClient.close closes underlying client."""
     client = HTTPClient(base_url="https://api.test.com")
@@ -68,7 +68,7 @@ async def test_http_client_close():
     assert client._client is None
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_http_client_raise_for_status_success():
     """Test _raise_for_status doesn't raise on success."""
     client = HTTPClient(base_url="https://api.test.com")
@@ -81,7 +81,7 @@ async def test_http_client_raise_for_status_success():
     await client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_http_client_raise_for_status_401():
     """Test _raise_for_status raises VaultyAuthenticationError on 401."""
     client = HTTPClient(base_url="https://api.test.com")
@@ -98,7 +98,7 @@ async def test_http_client_raise_for_status_401():
     await client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_http_client_raise_for_status_403():
     """Test _raise_for_status raises VaultyAuthorizationError on 403."""
     client = HTTPClient(base_url="https://api.test.com")
@@ -115,7 +115,7 @@ async def test_http_client_raise_for_status_403():
     await client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_http_client_raise_for_status_404():
     """Test _raise_for_status raises VaultyNotFoundError on 404."""
     client = HTTPClient(base_url="https://api.test.com")
@@ -132,7 +132,7 @@ async def test_http_client_raise_for_status_404():
     await client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_http_client_raise_for_status_400():
     """Test _raise_for_status raises VaultyValidationError on 400."""
     client = HTTPClient(base_url="https://api.test.com")
@@ -149,7 +149,7 @@ async def test_http_client_raise_for_status_400():
     await client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_http_client_raise_for_status_429():
     """Test _raise_for_status raises VaultyRateLimitError on 429."""
     client = HTTPClient(base_url="https://api.test.com")
@@ -168,7 +168,7 @@ async def test_http_client_raise_for_status_429():
     await client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_http_client_raise_for_status_500():
     """Test _raise_for_status raises VaultyAPIError on 500."""
     client = HTTPClient(base_url="https://api.test.com")
@@ -185,7 +185,7 @@ async def test_http_client_raise_for_status_500():
     await client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_http_client_request():
     """Test HTTPClient.request makes request correctly."""
     client = HTTPClient(base_url="https://api.test.com", api_token="test-token")
@@ -212,7 +212,7 @@ async def test_http_client_request():
     await client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_http_client_get():
     """Test HTTPClient.get."""
     client = HTTPClient(base_url="https://api.test.com")
@@ -232,7 +232,7 @@ async def test_http_client_get():
     await client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_http_client_post():
     """Test HTTPClient.post."""
     client = HTTPClient(base_url="https://api.test.com")
@@ -252,7 +252,7 @@ async def test_http_client_post():
     await client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_http_client_path_normalization():
     """Test HTTPClient normalizes paths."""
     client = HTTPClient(base_url="https://api.test.com")

@@ -8,7 +8,7 @@ from vaulty.auth import AuthHandler
 from vaulty.http import HTTPClient
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_auth_handler_init():
     """Test AuthHandler initialization."""
     http_client = HTTPClient(base_url="https://api.test.com")
@@ -20,7 +20,7 @@ async def test_auth_handler_init():
     await http_client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_auth_handler_login():
     """Test AuthHandler.login."""
     http_client = HTTPClient(base_url="https://api.test.com")
@@ -47,7 +47,7 @@ async def test_auth_handler_login():
     await http_client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_auth_handler_jwt_token_property():
     """Test AuthHandler.jwt_token property."""
     http_client = HTTPClient(base_url="https://api.test.com")
@@ -63,7 +63,7 @@ async def test_auth_handler_jwt_token_property():
     await http_client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_auth_handler_login_updates_http_client():
     """Test AuthHandler.login updates HTTP client with JWT token."""
     http_client = HTTPClient(base_url="https://api.test.com")

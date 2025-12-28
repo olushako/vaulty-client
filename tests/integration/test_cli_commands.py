@@ -15,13 +15,13 @@ except ImportError:
     CLI_AVAILABLE = False
 
 
-@pytest.fixture()
+@pytest.fixture
 def cli_runner():
     """Create Click CLI test runner."""
     return click.testing.CliRunner()
 
 
-@pytest.fixture()
+@pytest.fixture
 def mock_client():
     """Create mock VaultyClient."""
     return MagicMock()

@@ -9,7 +9,7 @@ from vaulty.auth import AuthHandler
 from vaulty.client import VaultyClient
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_vaulty_client_init_with_api_token():
     """Test VaultyClient initialization with API token."""
     client = VaultyClient(base_url="https://api.test.com", api_token="test-token")
@@ -27,7 +27,7 @@ async def test_vaulty_client_init_with_api_token():
     await client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_vaulty_client_init_with_jwt_token():
     """Test VaultyClient initialization with JWT token."""
     client = VaultyClient(base_url="https://api.test.com", jwt_token="jwt-token")
@@ -36,7 +36,7 @@ async def test_vaulty_client_init_with_jwt_token():
     await client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_vaulty_client_init_custom_config():
     """Test VaultyClient initialization with custom config."""
     client = VaultyClient(
@@ -54,7 +54,7 @@ async def test_vaulty_client_init_custom_config():
     await client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_vaulty_client_from_env():
     """Test VaultyClient.from_env."""
     with patch.dict(os.environ, {"VAULTY_API_TOKEN": "env-token"}):
@@ -64,7 +64,7 @@ async def test_vaulty_client_from_env():
         await client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_vaulty_client_from_env_jwt():
     """Test VaultyClient.from_env with JWT token."""
     with patch.dict(os.environ, {"VAULTY_JWT_TOKEN": "jwt-token"}, clear=True):
@@ -81,7 +81,7 @@ def test_vaulty_client_from_env_no_token():
             VaultyClient.from_env()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_vaulty_client_from_config():
     """Test VaultyClient.from_config."""
     with patch.dict(os.environ, {"VAULTY_API_TOKEN": "config-token"}):
@@ -98,7 +98,7 @@ def test_vaulty_client_from_config_no_token():
             VaultyClient.from_config()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_vaulty_client_context_manager():
     """Test VaultyClient as async context manager."""
     async with VaultyClient(base_url="https://api.test.com", api_token="test-token") as client:
@@ -108,7 +108,7 @@ async def test_vaulty_client_context_manager():
     assert client.http_client._client is None
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_vaulty_client_close():
     """Test VaultyClient.close."""
     client = VaultyClient(base_url="https://api.test.com", api_token="test-token")

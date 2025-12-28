@@ -9,19 +9,19 @@ from vaulty.models import PaginatedResponse, SecretResponse, SecretValueResponse
 from vaulty.resources.secrets import SecretResource
 
 
-@pytest.fixture()
+@pytest.fixture
 def http_client():
     """Create HTTPClient for testing."""
     return HTTPClient(base_url="https://api.test.com", api_token="test-token")
 
 
-@pytest.fixture()
+@pytest.fixture
 def secret_resource(http_client):
     """Create SecretResource for testing."""
     return SecretResource(http_client)
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_secret_resource_create(secret_resource, http_client):
     """Test SecretResource.create."""
     mock_response = MagicMock()
@@ -43,7 +43,7 @@ async def test_secret_resource_create(secret_resource, http_client):
     await http_client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_secret_resource_list(secret_resource, http_client):
     """Test SecretResource.list."""
     mock_response = MagicMock()
@@ -76,7 +76,7 @@ async def test_secret_resource_list(secret_resource, http_client):
     await http_client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_secret_resource_get(secret_resource, http_client):
     """Test SecretResource.get."""
     mock_response = MagicMock()
@@ -98,7 +98,7 @@ async def test_secret_resource_get(secret_resource, http_client):
     await http_client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_secret_resource_get_value(secret_resource, http_client):
     """Test SecretResource.get_value."""
     mock_response = MagicMock()
@@ -121,7 +121,7 @@ async def test_secret_resource_get_value(secret_resource, http_client):
     await http_client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_secret_resource_update(secret_resource, http_client):
     """Test SecretResource.update."""
     mock_response = MagicMock()
@@ -143,7 +143,7 @@ async def test_secret_resource_update(secret_resource, http_client):
     await http_client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_secret_resource_delete(secret_resource, http_client):
     """Test SecretResource.delete."""
     mock_response = MagicMock()
@@ -157,7 +157,7 @@ async def test_secret_resource_delete(secret_resource, http_client):
     await http_client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_secret_resource_url_encoding(secret_resource, http_client):
     """Test SecretResource URL encodes project names."""
     mock_response = MagicMock()

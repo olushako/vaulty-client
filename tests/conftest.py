@@ -9,7 +9,7 @@ from vaulty.auth import AuthHandler
 from vaulty.http import HTTPClient
 
 
-@pytest.fixture()
+@pytest.fixture
 def mock_httpx_response():
     """Create a mock httpx.Response."""
 
@@ -39,19 +39,19 @@ def mock_httpx_response():
     return _create
 
 
-@pytest.fixture()
+@pytest.fixture
 def mock_httpx_client():
     """Create a mock httpx.AsyncClient."""
     return AsyncMock(spec=httpx.AsyncClient)
 
 
-@pytest.fixture()
+@pytest.fixture
 def http_client():
     """Create HTTPClient instance for testing."""
     return HTTPClient(base_url="https://api.test.com", api_token="test-token")
 
 
-@pytest.fixture()
+@pytest.fixture
 def auth_handler(http_client):
     """Create AuthHandler instance for testing."""
     return AuthHandler(http_client)

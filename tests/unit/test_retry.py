@@ -9,7 +9,7 @@ from vaulty.exceptions import VaultyAPIError, VaultyRateLimitError
 from vaulty.retry import RetryConfig, retry_with_backoff
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_retry_config_defaults():
     """Test RetryConfig default values."""
     config = RetryConfig()
@@ -20,7 +20,7 @@ async def test_retry_config_defaults():
     assert config.jitter is True
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_retry_config_custom():
     """Test RetryConfig with custom values."""
     config = RetryConfig(
@@ -33,7 +33,7 @@ async def test_retry_config_custom():
     assert config.jitter is False
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_retry_success_first_attempt():
     """Test retry succeeds on first attempt."""
     func = AsyncMock(return_value="success")
@@ -44,7 +44,7 @@ async def test_retry_success_first_attempt():
     assert func.call_count == 1
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_retry_success_after_failures():
     """Test retry succeeds after some failures."""
     func = AsyncMock(
@@ -58,7 +58,7 @@ async def test_retry_success_after_failures():
     assert func.call_count == 3
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_retry_exhausts_retries():
     """Test retry raises exception after exhausting retries."""
     func = AsyncMock(side_effect=VaultyAPIError("Error", 500))
@@ -71,7 +71,7 @@ async def test_retry_exhausts_retries():
     assert func.call_count == 3  # Initial + 2 retries
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_retry_rate_limit_with_retry_after():
     """Test retry handles rate limit with Retry-After header."""
     func = AsyncMock(
@@ -88,7 +88,7 @@ async def test_retry_rate_limit_with_retry_after():
     assert func.call_count == 2
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_retry_no_retry_on_4xx():
     """Test retry doesn't retry on 4xx errors (except rate limit)."""
     func = AsyncMock(side_effect=VaultyAPIError("Bad request", 400))
@@ -101,7 +101,7 @@ async def test_retry_no_retry_on_4xx():
     assert func.call_count == 1  # No retries for 4xx
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_retry_retries_on_5xx():
     """Test retry retries on 5xx errors."""
     func = AsyncMock(side_effect=[VaultyAPIError("Server error", 500), "success"])
@@ -113,7 +113,7 @@ async def test_retry_retries_on_5xx():
     assert func.call_count == 2
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_retry_handles_generic_exception():
     """Test retry handles generic exceptions."""
     func = AsyncMock(side_effect=[ConnectionError("Network error"), "success"])
@@ -125,7 +125,7 @@ async def test_retry_handles_generic_exception():
     assert func.call_count == 2
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_retry_delay_calculation():
     """Test retry delay calculation with backoff."""
     func = AsyncMock(side_effect=VaultyAPIError("Error", 500))
@@ -148,7 +148,7 @@ async def test_retry_delay_calculation():
     assert delays[1] == 2.0
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_retry_respects_max_delay():
     """Test retry respects max_delay."""
     func = AsyncMock(side_effect=VaultyAPIError("Error", 500))

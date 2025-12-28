@@ -47,7 +47,7 @@ def test_get_client_no_token():
 
 
 @pytest.mark.skipif(not CLI_AVAILABLE, reason="CLI dependencies not available")
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_get_project_from_token_scope_single_project():
     """Test get_project_from_token_scope returns project info for project-scoped token."""
     client = MagicMock()
@@ -70,7 +70,7 @@ async def test_get_project_from_token_scope_single_project():
 
 
 @pytest.mark.skipif(not CLI_AVAILABLE, reason="CLI dependencies not available")
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_get_project_from_token_scope_multiple_projects():
     """Test get_project_from_token_scope returns None for full-scope token."""
     client = MagicMock()
@@ -88,7 +88,7 @@ async def test_get_project_from_token_scope_multiple_projects():
 
 
 @pytest.mark.skipif(not CLI_AVAILABLE, reason="CLI dependencies not available")
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_get_project_from_token_scope_no_projects():
     """Test get_project_from_token_scope returns None when no projects."""
     client = MagicMock()
@@ -106,7 +106,7 @@ async def test_get_project_from_token_scope_no_projects():
 
 
 @pytest.mark.skipif(not CLI_AVAILABLE, reason="CLI dependencies not available")
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_get_project_from_token_scope_exception():
     """Test get_project_from_token_scope handles exceptions."""
     client = MagicMock()

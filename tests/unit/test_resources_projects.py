@@ -9,19 +9,19 @@ from vaulty.models import PaginatedResponse, ProjectResponse
 from vaulty.resources.projects import ProjectResource
 
 
-@pytest.fixture()
+@pytest.fixture
 def http_client():
     """Create HTTPClient for testing."""
     return HTTPClient(base_url="https://api.test.com", api_token="test-token")
 
 
-@pytest.fixture()
+@pytest.fixture
 def project_resource(http_client):
     """Create ProjectResource for testing."""
     return ProjectResource(http_client)
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_project_resource_create(project_resource, http_client):
     """Test ProjectResource.create."""
     mock_response = MagicMock()
@@ -44,7 +44,7 @@ async def test_project_resource_create(project_resource, http_client):
     await http_client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_project_resource_list(project_resource, http_client):
     """Test ProjectResource.list."""
     mock_response = MagicMock()
@@ -78,7 +78,7 @@ async def test_project_resource_list(project_resource, http_client):
     await http_client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_project_resource_get(project_resource, http_client):
     """Test ProjectResource.get."""
     mock_response = MagicMock()
@@ -101,7 +101,7 @@ async def test_project_resource_get(project_resource, http_client):
     await http_client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_project_resource_update(project_resource, http_client):
     """Test ProjectResource.update."""
     mock_response = MagicMock()
@@ -124,7 +124,7 @@ async def test_project_resource_update(project_resource, http_client):
     await http_client.close()
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_project_resource_delete(project_resource, http_client):
     """Test ProjectResource.delete."""
     mock_response = MagicMock()
