@@ -25,7 +25,7 @@ __all__ = [
 ]
 
 try:
-    __version__ = version("vaulty")
+    __version__ = version("vaulty-client")
 except PackageNotFoundError:
     # Package not installed, use version from pyproject.toml
-    __version__ = "0.1.0"
+    __version__ = "0.1.1"
