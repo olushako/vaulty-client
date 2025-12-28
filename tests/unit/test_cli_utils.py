@@ -117,6 +117,7 @@ async def test_get_project_from_token_scope_exception():
     assert project_name is None
 
 
+@pytest.mark.skipif(not CLI_AVAILABLE, reason="CLI dependencies not available")
 def test_run_async():
     """Test run_async runs async coroutine."""
     async def test_coro():
@@ -126,24 +127,28 @@ def test_run_async():
     assert result == "result"
 
 
+@pytest.mark.skipif(not CLI_AVAILABLE, reason="CLI dependencies not available")
 def test_detect_cicd_true():
     """Test detect_cicd returns True in CI/CD environment."""
     with patch.dict(os.environ, {"CI": "true"}):
         assert detect_cicd() is True
 
 
+@pytest.mark.skipif(not CLI_AVAILABLE, reason="CLI dependencies not available")
 def test_detect_cicd_false():
     """Test detect_cicd returns False in non-CI/CD environment."""
     with patch.dict(os.environ, {}, clear=True):
         assert detect_cicd() is False
 
 
+@pytest.mark.skipif(not CLI_AVAILABLE, reason="CLI dependencies not available")
 def test_detect_cicd_github_actions():
     """Test detect_cicd detects GitHub Actions."""
     with patch.dict(os.environ, {"GITHUB_ACTIONS": "true"}):
         assert detect_cicd() is True
 
 
+@pytest.mark.skipif(not CLI_AVAILABLE, reason="CLI dependencies not available")
 def test_detect_cicd_gitlab_ci():
     """Test detect_cicd detects GitLab CI."""
     with patch.dict(os.environ, {"GITLAB_CI": "true"}):
